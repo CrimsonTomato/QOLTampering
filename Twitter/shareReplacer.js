@@ -10,16 +10,20 @@
 // @license      MIT
 // ==/UserScript==
 
+// Source code: https://github.com/CrimsonTomato/QOLTampering/blob/main/Twitter/shareReplacer.js
+/* jshint esversion: 8 */
+
 (function() {
     'use strict';
     // Replace REPLACEMENT_DOMAIN with your domain of choice
-
     const REPLACEMENT_DOMAIN = 'vxtwitter.com';
 
     // This function checks clipboard content and replaces the domain.
     async function modifyClipboard() {
         try {
-            const originalText = await navigator.clipboard.readText();
+            // 1. Read the original text from the clipboard.
+            // 2. Use .trim() to remove any leading/trailing whitespace, including newlines.
+            const originalText = (await navigator.clipboard.readText()).trim();
 
             // Use a regular expression to find and replace the domain
             const newText = originalText.replace(/(x\.com|twitter\.com)/, REPLACEMENT_DOMAIN);
